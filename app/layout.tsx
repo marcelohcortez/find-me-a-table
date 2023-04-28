@@ -1,4 +1,9 @@
+import NavBar from './components/NavBar'
 import './globals.css'
+
+export const metadata = {
+  title: 'Find Me a Table',
+}
 
 export default function RootLayout({
   children,
@@ -12,7 +17,14 @@ export default function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body>{children}</body>
+      <body>
+        <main className="bg-gray-100 min-h-screen">
+          <div className="max-w-screen-2xl m-auto bg-white">
+            <NavBar/>
+            {children}
+          </div>
+        </main>
+      </body>
     </html>
   )
 }
