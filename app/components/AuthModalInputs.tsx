@@ -63,7 +63,7 @@ export default function AuthModalInputs({inputs, handleChangeInput, isSignIn}: P
                     placeholder="City" 
                     value={inputs.city}
                     onChange={handleChangeInput} 
-                    name="phone"
+                    name="city"
                 />
             </div>
         )}
