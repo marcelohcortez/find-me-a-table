@@ -19,7 +19,7 @@ export default async function handler(
     });
   }
 
-  const findUser = await prisma.user.findUnique({
+  const user = await prisma.user.findUnique({
     where: {
       email: payload.email,
     },
@@ -33,17 +33,17 @@ export default async function handler(
     },
   });
 
-  if (!findUser) {
+  if (!user) {
     return res.status(401).json({
       errorMessage: "User not found",
     });
   }
 
   return res.json({
-    id: findUser.id,
-    firstName: findUser.first_name,
-    lastName: findUser.last_name,
-    phone: findUser.phone,
-    city: findUser.city,
+    id: user?.id,
+    firstName: user?.first_name,
+    lastName: user?.last_name,
+    phone: user?.phone,
+    city: user?.city,
   });
 }
