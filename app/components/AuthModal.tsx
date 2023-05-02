@@ -6,7 +6,7 @@ import { useContext, useEffect, useState } from 'react';
 import AuthModalInputs from './AuthModalInputs';
 import useAuth from '../../hooks/useAuth';
 import AuthContext, { AuthenticationContext } from '../context/AuthContext';
-import { CircularProgress } from '@mui/material';
+import { Alert, CircularProgress } from '@mui/material';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -31,7 +31,7 @@ export default function LoginModal({ isSignIn }: { isSignIn: boolean }) {
     password: ""
   });
   
-  const {signin} = useAuth();
+  const {signin, signup} = useAuth();
   const {loading, data, error} = useContext(AuthenticationContext);
 
   const handleOpen = () => setOpen(true);
@@ -65,7 +65,9 @@ export default function LoginModal({ isSignIn }: { isSignIn: boolean }) {
 
   const handleClick = () => {
     if (isSignIn) {
-      signin({email: inputs.email, password: inputs.password});
+      signin({email: inputs.email, password: inputs.password}, handleClose);
+    } else {
+      signup(inputs, handleClose);
     }
   }
 
@@ -89,6 +91,11 @@ export default function LoginModal({ isSignIn }: { isSignIn: boolean }) {
             </div>
           ) : (
             <div className="p-2 h-[600px]">
+              {error ? (
+                <Alert severity="error" className='mb-4'>
+                  {error}
+                </Alert>
+              ) : null}
               <div className="uppercase font-bold text-center pb-2 border-b mb-2">
                 <p className="text-sm">
                   { renderContent("Sign In", "Create an Account") }

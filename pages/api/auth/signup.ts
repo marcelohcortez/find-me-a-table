@@ -3,6 +3,7 @@ import { PrismaClient } from "@prisma/client";
 import validator from "validator";
 import bcrypt from "bcrypt";
 import * as jose from "jose";
+import { setCookie } from "cookies-next";
 
 const prisma = new PrismaClient();
 
@@ -32,7 +33,7 @@ export default async function handler(
             },
             {
                 valid: validator.isEmail(email),
-                errorMessage: "Email is not valid"
+                errorMessage: "Email or password is not valid"
             },
             {
                 valid: validator.isMobilePhone(phone),
@@ -94,8 +95,14 @@ export default async function handler(
         .setExpirationTime("24h")
         .sign(secret)
 
+        setCookie("jwt", token, {res, req, maxAge: 60 * 6 * 24});
+
         return res.status(200).json({
-            token: token,
+            firstName: addUser.first_name,
+            lastName: addUser.last_name,
+            email: addUser.email,
+            phone: addUser.phone,
+            city: addUser.city,
         });
     }
     
