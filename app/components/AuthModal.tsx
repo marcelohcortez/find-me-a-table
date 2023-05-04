@@ -5,7 +5,7 @@ import Modal from '@mui/material/Modal';
 import { useContext, useEffect, useState } from 'react';
 import AuthModalInputs from './AuthModalInputs';
 import useAuth from '../../hooks/useAuth';
-import AuthContext, { AuthenticationContext } from '../context/AuthContext';
+import { AuthenticationContext } from '../context/AuthContext';
 import { Alert, CircularProgress } from '@mui/material';
 
 const style = {
@@ -19,7 +19,7 @@ const style = {
   p: 4,
 };
 
-export default function LoginModal({ isSignIn }: { isSignIn: boolean }) {
+export default function AuthModal({ isSignIn }: { isSignIn: boolean }) {
   const [open, setOpen] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const [inputs, setInputs] = useState({

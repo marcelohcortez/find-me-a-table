@@ -36,12 +36,17 @@ export default function AuthContext({
     children: React.ReactNode
 }){
     const [authState, setAuthState] = useState<State>({
-        loading: false,
+        loading: true,
         error: null,
         data: null,
     });
 
     const fetchUSer = async () => {
+        setAuthState({
+            data: null,
+            error: null,
+            loading: true,
+        });
         try {
             const jwt = getCookie("jwt")
 

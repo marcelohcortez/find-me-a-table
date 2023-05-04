@@ -1,9 +1,17 @@
+"use client"
+
 import Link from "next/link";
-import LoginModal from "./AuthModal";
+import AuthModal from "./AuthModal";
 import Image from "next/image";
 import logo from "../../public/logo.png";
+import { useContext } from "react";
+import { AuthenticationContext } from "../context/AuthContext";
+import useAuth from "../../hooks/useAuth";
 
-export default function NavBar() {
+function NavBar() {
+  const {data, loading} = useContext(AuthenticationContext);
+  const {signout} = useAuth();
+
   return (
     <nav className="bg-white p-2 flex justify-between m-auto w-[95%]">
         <div className="flex items-center">
@@ -12,10 +20,17 @@ export default function NavBar() {
             Find Me a Table
           </Link>
         </div>
-        <div className="flex items-center">
-            <LoginModal isSignIn={true}/>
-            <LoginModal isSignIn={false}/>
+        {loading ? null : (
+          <div className="flex items-center">
+          {data ? <button className="bg-orange-400 text-white border-orange-400 border p-1 px-4 rounded mr-3" onClick={signout}>Sign out</button> : (
+            <>
+            <AuthModal isSignIn={true}/>
+            <AuthModal isSignIn={false}/>
+            </>
+          )}
         </div>
+        )}
     </nav>
   )
 }
+export default NavBar;
