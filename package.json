@@ -12,7 +12,6 @@
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/material": "^5.12.2",
-    "@next/font": "13.3.0",
     "@prisma/client": "^4.8.1",
     "@types/bcrypt": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.2",
