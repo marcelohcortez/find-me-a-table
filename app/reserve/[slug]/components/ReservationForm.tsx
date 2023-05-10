@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import useReservation from "../../../../hooks/useReservation";
 
 export default function ReservationForm() {
     const [disabled, setDisabled] = useState(true);
-
+    const {error, loading, createReservation} = useReservation();
     const [inputs, setInputs] = useState({
         bookerFirstName: "",
         bookerLastName: "",
