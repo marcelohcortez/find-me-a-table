@@ -58,7 +58,7 @@ export default function AuthContext({
                 });
             }
 
-            const response = await axios.get("api/auth/me", {
+            const response = await axios.get(`${process.env.REACT_APP_ROOT_PATH}/api/auth/me`, {
                 headers: {
                     Authorization: `Bearer ${jwt}`
                 }

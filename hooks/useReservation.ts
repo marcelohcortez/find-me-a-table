@@ -31,9 +31,8 @@ export default function useReservation(){
         setDidBook: Dispatch<SetStateAction<boolean>>,
     }) => {
         setLoading(true)
-
         try {
-            const response = await axios.post(`../api/restaurant/${slug}/reserve`, {
+            const response = await axios.post(`${process.env.REACT_APP_ROOT_PATH}/api/restaurant/${slug}/reserve`, {
                 bookerFirstName,
                 bookerLastName,
                 bookerPhone,

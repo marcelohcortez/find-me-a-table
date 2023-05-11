@@ -23,7 +23,7 @@ const useAuth = () => {
     });
     try {
       const response = await axios.post(
-        "/api/auth/signin",
+        `${process.env.REACT_APP_ROOT_PATH}/api/auth/signin`,
         {
           email,
           password,
@@ -68,7 +68,7 @@ const useAuth = () => {
     });
     try {
       const response = await axios.post(
-        "api/auth/signup",
+        `${process.env.REACT_APP_ROOT_PATH}/api/auth/signup`,
         {
           email,
           password,

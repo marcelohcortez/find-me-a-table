@@ -59,7 +59,7 @@ function ReservationCard({
 
         return timesWithinWindow;
     }
-
+    
     return (
         <div className="fixed w-[15%] bg-white rounded p-3 shadow">
             <div className="text-center border-b pb-2 font-bold">
@@ -103,6 +103,7 @@ function ReservationCard({
                         {data.map((time) => {
                             return time.available ? (
                                 <Link 
+                                key={time.time}
                                 href={`/reserve/${slug}?date=${day}T${time.time}&partySize=${partySize}`} 
                                 className="bg-red-600 cursor-pointer p-2 text-center text-white mb-3 rounded mr-3">
                                     <p className="text-sm font-bold">
