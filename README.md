@@ -2,7 +2,7 @@
 
 Table reservation project, following the model of [Open Table](https://www.opentable.com/).
 
-Nothing in the project is hardcoded, everything is functional.
+Nothing in the project is hardcoded, everything is functional, but the project is not responsible yet.
 
 The login, signup, logout, search (by city), reservation times and reservation creation are working and already connected to a DB.
 
@@ -63,6 +63,7 @@ npm run dev
 ```
 
 # To-do:
+- Make it responsible;
 - Button to clear the search;
 - Option to include the exact price or anything up until the one selected;
 - Adjust the main images looking distorted;
