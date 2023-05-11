@@ -8,6 +8,8 @@ The login, signup, logout, search (by city), reservation times and reservation c
 
 The only restaurant that has tables for reservation is the 'Vivaan - fine Indian'.
 
+**LIVE DEMO: https://find-me-a-table.vercel.app/**
+
 ## Tech & 3rd party used in the project:
 - [React](https://react.dev/)
 - [NextJS](https://nextjs.org/)
