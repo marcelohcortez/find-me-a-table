@@ -22,6 +22,7 @@ const useAuth = () => {
       loading: true,
     });
     try {
+        console.log(`${process.env.REACT_APP_ROOT_PATH}/api/auth/signin`)
       const response = await axios.post(
         `${process.env.REACT_APP_ROOT_PATH}/api/auth/signin`,
         {
