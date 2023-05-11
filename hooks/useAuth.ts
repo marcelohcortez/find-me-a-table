@@ -1,104 +1,113 @@
 import axios from "axios";
+import { getCookie, removeCookies } from "cookies-next";
 import { useContext } from "react";
 import { AuthenticationContext } from "../app/context/AuthContext";
-import { removeCookies } from "cookies-next";
 
 const useAuth = () => {
-    const {data, error, loading, setAuthState} = useContext(AuthenticationContext);
+  const { setAuthState } = useContext(AuthenticationContext);
 
-    const signin = async ({
-        email, 
-        password
+  const signin = async (
+    {
+      email,
+      password,
     }: {
-        email: string, 
-        password: string
-    }, handleClose: () => void) => {
-        setAuthState({
-            data: null,
-            error: null,
-            loading: true,
-        });
-        try {
-            const response = await axios.post("http://localhost:3000/api/auth/signin", {
-                email,
-                password
-            });
-            setAuthState({
-                data: response.data,
-                error: null,
-                loading: false,
-            });
-            
-            handleClose();
-        } catch (error: any) {
-            setAuthState({
-                data: null,
-                error: error.response.data.errorMessage,
-                loading: false,
-            })
+      email: string;
+      password: string;
+    },
+    handleClose: () => void
+  ) => {
+    setAuthState({
+      data: null,
+      error: null,
+      loading: true,
+    });
+    try {
+      const response = await axios.post(
+        "/api/auth/signin",
+        {
+          email,
+          password,
         }
+      );
+      setAuthState({
+        data: response.data,
+        error: null,
+        loading: false,
+      });
+      handleClose();
+    } catch (error: any) {
+      setAuthState({
+        data: null,
+        error: error.response.data.errorMessage,
+        loading: false,
+      });
     }
-     
-    const signup = async ({
-        firstName,
-        lastName,
-        email,
-        password,
-        phone,
-        city,
+  };
+  const signup = async (
+    {
+      email,
+      password,
+      firstName,
+      lastName,
+      city,
+      phone,
     }: {
-        firstName: string;
-        lastName: string;
-        email: string;
-        password: string;
-        phone: string;
-        city: String;
-    }, handleClose: () => void) => {
-        setAuthState({
-            data: null,
-            error: null,
-            loading: true,
-        });
-        try {
-            const response = await axios.post("http://localhost:3000/api/auth/signup", {
-                firstName,
-                lastName,
-                email,
-                password,
-                phone,
-                city,
-            });
-            setAuthState({
-                data: response.data,
-                error: null,
-                loading: false,
-            });
-            
-            handleClose();
-        } catch (error: any) {
-            setAuthState({
-                data: null,
-                error: error.response.data.errorMessage,
-                loading: false,
-            })
+      email: string;
+      password: string;
+      firstName: string;
+      lastName: string;
+      city: string;
+      phone: string;
+    },
+    handleClose: () => void
+  ) => {
+    setAuthState({
+      data: null,
+      error: null,
+      loading: true,
+    });
+    try {
+      const response = await axios.post(
+        "api/auth/signup",
+        {
+          email,
+          password,
+          firstName,
+          lastName,
+          city,
+          phone,
         }
+      );
+      setAuthState({
+        data: response.data,
+        error: null,
+        loading: false,
+      });
+      handleClose();
+    } catch (error: any) {
+      setAuthState({
+        data: null,
+        error: error.response.data.errorMessage,
+        loading: false,
+      });
     }
+  };
 
-    const signout = () => {
-        removeCookies("jwt");
-        setAuthState({
-            data: null,
-            error: null,
-            loading: false,
-        })
-    }
-    
+  const signout = () => {
+    removeCookies("jwt");
 
-    return {
-        signin,
-        signup,
-        signout,
-    }
-}
+    setAuthState({
+      data: null,
+      error: null,
+      loading: false,
+    });
+  };
+
+  return {
+    signin,
+    signup,
+    signout,
+  };
+};
 
 export default useAuth;
