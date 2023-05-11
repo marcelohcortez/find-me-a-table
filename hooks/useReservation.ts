@@ -1,4 +1,4 @@
-import { useState  } from "react";
+import { Dispatch, SetStateAction, useState  } from "react";
 import axios from "axios";
 
 export default function useReservation(){
@@ -14,8 +14,9 @@ export default function useReservation(){
         bookerLastName,
         bookerPhone,
         bookerEmail,
-        bookerOcasion,
-        bookerRequest
+        bookerOccasion,
+        bookerRequest,
+        setDidBook
     }: {
         slug: string;
         partySize: string;
@@ -25,18 +26,19 @@ export default function useReservation(){
         bookerLastName: string;
         bookerPhone: string;
         bookerEmail: string;
-        bookerOcasion: string;
+        bookerOccasion: string;
         bookerRequest: string
+        setDidBook: Dispatch<SetStateAction<boolean>>,
     }) => {
         setLoading(true)
 
         try {
-            const response = await axios.posy(`http://localhost:3000/api/restaurant/${slug}/reserve`, {
+            const response = await axios.post(`http://localhost:3000/api/restaurant/${slug}/reserve`, {
                 bookerFirstName,
                 bookerLastName,
                 bookerPhone,
                 bookerEmail,
-                bookerOcasion,
+                bookerOccasion,
                 bookerRequest
             }, {
                 params: {
@@ -45,6 +47,7 @@ export default function useReservation(){
                     partySize
                 }
             })
+            setDidBook(true);
             setLoading(false);
             return response.data
         } catch (error: any) {

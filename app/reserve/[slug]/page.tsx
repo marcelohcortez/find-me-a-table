@@ -1,15 +1,15 @@
 import { PrismaClient } from "@prisma/client";
 import { notFound } from "next/navigation";
-import { capitalizeArray } from "../../utils/capitalizeArray"
-import Header from "./components/Header"
-import ReservationForm from "./components/ReservationForm"
+import { capitalizeArray } from "../../utils/capitalizeArray";
+import Header from "./components/Header";
+import ReservationForm from "./components/ReservationForm";
 
 const prisma = new PrismaClient();
 
 const fetchRestaurantBySlug = async (slug: string) => {
   const restaurant = await prisma.restaurant.findUnique({
     where: {
-      slug,       
+      slug,
     },
   });
 
@@ -18,32 +18,44 @@ const fetchRestaurantBySlug = async (slug: string) => {
   }
 
   return restaurant;
-}
+};
 
-
-export async function generateMetadata({ params}: {params: {slug: string}}){
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
   return {
-    title: `Menu of ${capitalizeArray({params})} - Find Me a Table`,
-  }
+    title: `Menu of ${capitalizeArray({ params })} - Find Me a Table`,
+  };
 }
 
 export default async function Reserve({
   params,
-  searchParams
+  searchParams,
 }: {
   params: { slug: string };
-  searchParams: {date: string; partySize: string}
+  searchParams: { date: string; partySize: string };
 }) {
   const restaurant = await fetchRestaurantBySlug(params.slug);
 
   return (
     <>
       <div className="border-t h-screen">
-          <div className="py-9 w-3/5 m-auto">
-              <Header image={restaurant.main_image} name={restaurant.name} date={searchParams.date} partySize={searchParams.partySize}/>
-              <ReservationForm/>
-          </div>
+        <div className="py-9 w-3/5 m-auto">
+          <Header
+            image={restaurant.main_image}
+            name={restaurant.name}
+            date={searchParams.date}
+            partySize={searchParams.partySize}
+          />
+          <ReservationForm
+            date={searchParams.date}
+            partySize={searchParams.partySize}
+            slug={params.slug}
+          />
+        </div>
       </div>
     </>
-  )
+  );
 }

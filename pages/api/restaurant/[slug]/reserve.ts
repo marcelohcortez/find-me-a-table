@@ -21,7 +21,7 @@ export default async function handler(
       bookerPhone,
       bookerFirstName,
       bookerLastName,
-      bookerOcasion,
+      bookerOccasion,
       bookerRequest,
     } = req.body;
 
@@ -126,7 +126,7 @@ export default async function handler(
         booker_phone: bookerPhone,
         booker_first_name: bookerFirstName,
         booker_last_name: bookerLastName,
-        booker_ocasion: bookerOcasion,
+        booker_ocasion: bookerOccasion,
         booker_request: bookerRequest,
         restaurant_id: restaurant.id,
       },

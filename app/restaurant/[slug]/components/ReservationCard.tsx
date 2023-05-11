@@ -103,10 +103,10 @@ function ReservationCard({
                         {data.map((time) => {
                             return time.available ? (
                                 <Link 
-                                href={`/reserve/${slug}?date=${day}&partySize=${partySize}`} 
+                                href={`/reserve/${slug}?date=${day}T${time.time}&partySize=${partySize}`} 
                                 className="bg-red-600 cursor-pointer p-2 text-center text-white mb-3 rounded mr-3">
                                     <p className="text-sm font-bold">
-                                        {convertToDisplayTime(time.time)}
+                                        {convertToDisplayTime(time.time as Time)}
                                     </p>
                                 </Link> 
                             ) : (
