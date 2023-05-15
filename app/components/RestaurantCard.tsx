@@ -11,12 +11,11 @@ export default function RestaurantCard({ restaurant }: Props){
     return(
       <div className="w-64 h-72 m-3 rounded overflow-hidden border border-orange-400 cursor-pointer">
         <Link href={`/restaurant/${restaurant.slug}`}>
-          <img
-            src={restaurant.main_image}
-            alt=""
-            className="w-full h-36"
-          />
-          <div className="p-1">
+          <div
+            style={{backgroundImage: `url(${restaurant.main_image})`}}
+            className="w-full h-36 bg-cover bg-no-repeat"
+          ></div>
+          <div className="p-3">
             <h3 className="font-bold text-2xl mb-2">{restaurant.name}</h3>
             <div className="flex items-start">
               <Stars reviews={restaurant.reviews}/>
