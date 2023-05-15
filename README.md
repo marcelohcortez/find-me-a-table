@@ -1,12 +1,14 @@
 ## Find Me a Table
 
+**LIVE DEMO: https://find-me-a-table.vercel.app/**
+
 Table reservation project, following the model of [Open Table](https://www.opentable.com/).
 
-Nothing in the project is hardcoded, everything is functional.
+100% functional, conected to a PostgreSQL DB. Not responsive yet. Fake data
 
-The login, signup, logout, search (by city), reservation times and reservation creation are working and already connected to a DB.
+Available action: login, signup, logout, search (by city), check reservation times and make a reservation.
 
-The only restaurant that has tables for reservation is the 'Vivaan - fine Indian'.
+*(The only restaurant that has tables for reservation is the 'Vivaan - fine Indian'.)*
 
 **LIVE DEMO: https://find-me-a-table.vercel.app/**
 
@@ -63,17 +65,9 @@ npm run dev
 ```
 
 # To-do:
-- Button to clear the search;
-- Option to include the exact price or anything up until the one selected;
-- Adjust the main images looking distorted;
-- Make the UI prettier;
-- Add more fake data for other restaurants;
+- Make it responsible;
+- UI improvements;
+- Implemente voting and comments;
 - Restrict access to reservation form for logged users only;
-- Add loading page when transitioning from restaurant to reserve page;
-- In the main search add possibility to search for restaurant name or cuisine;
-- Add loading when signingup;
-- Once the reservation is done, change the h3 in the header that says "You're almost done!";
-- Add an authentication for the signup with automated email confirmation;
-- Add 'anti-robot' verification on signup;
-- Allow registered users to coment on the restaurants;
-- Allow users to vote on the restaurants;
+
+**LIVE DEMO: https://find-me-a-table.vercel.app/**
