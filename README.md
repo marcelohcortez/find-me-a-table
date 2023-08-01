@@ -65,7 +65,7 @@ npm run dev
 ```
 
 # To-do:
-- Make it responsible;
+- Make it responsive;
 - UI improvements;
 - Implemente voting and comments;
 - Restrict access to reservation form for logged users only;
